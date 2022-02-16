@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-  @articles = Article.all
+    @articles = Article.all
   end
 
   def show
@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @taskarticle = Article.new
+    @article = Article.new
   end
 
   def create
@@ -24,7 +24,6 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     @article.update(article_params)
-    @article.save
     redirect_to articles_path(@article)
   end
 
@@ -37,6 +36,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :details, :completed)
+    params.require(:article).permit(:title, :content)
   end
 end
